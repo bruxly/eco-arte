@@ -1,0 +1,286 @@
+
+$primary-color:#ffefe7;
+$secondary-color:#FFDAC6;
+$tertiary-color: #BABD8D;
+$primary-text-color: #7C6A0A;
+$quaternary-color: #FA9500;
+$font-stack: 'IBM Plex Sans', sans-serif;
+$paragraph-size: 1.5em;
+
+@mixin flexCenter($direction, $content, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+    align-items: $align;
+}
+
+/*estilos de los iconos del header*/
+@mixin buttonStyle{
+    button{
+        background: none;
+        border-style: none;
+    }
+   
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: $primary-color;
+    font-family: $font-stack ;
+}
+
+nav{
+    width: auto;
+    
+    @include flexCenter(row, space-between, center);
+    color: $primary-text-color;
+    padding: 15px;
+
+    p{
+        /*header eco-arte*/
+        font-size: $paragraph-size;
+        padding-left:30px ;
+    }
+
+    .icons{
+        /*header icons*/
+        display: flex;
+        gap: 15px;/*espacio los icons*/
+        @include buttonStyle;
+
+    }
+}
+
+article{
+    /*section impacto ecologico y conoce mas*/
+    width: auto;
+    color: $primary-text-color;
+    @include flexCenter(row,space-between ,center);
+    background-color: $primary-color;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-top: 70px;
+    
+    /*section Impacto Ecologico*/
+    .impacto-section{
+        @include flexCenter(column,space-evenly,flex-start );
+        padding-top: 50px;
+        gap: 25px;
+    }
+
+    h1{
+        font-size: 3em;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    p{
+        /*texto loren*/
+        font-size: $paragraph-size;
+        
+    }
+
+    /*boton conoce mas*/
+    @include buttonStyle;
+    button{
+        width: 12vw;
+        padding: 1px;
+        background-color: $quaternary-color;
+        
+        border-style: none;/*quito los bordes del cuadro de los icons*/
+        border-radius: 35px;
+        color: white;
+        font-size: 1em;
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    img{
+        width: 25vw;
+        border-radius: 19px;
+    }
+    
+}   
+
+/*section de cuidado de la salud*/
+section{
+    width: auto;
+    height: auto;
+    padding: 60px;
+
+    h2{
+        color: $primary-text-color;
+        font-size: 2em;
+    }
+
+    .healthcare{
+        padding-bottom: 60px;
+        h2{
+            font-weight: 300;
+            padding-bottom: 60px;
+        }
+
+        .card-section{
+            width: auto;
+            height: auto;
+            @include flexCenter(row,space-evenly,center );
+            flex-wrap: wrap;/*de esta forma coloco las tarjetas acomodadas en la pantalla sin hacer scroll*/
+            column-gap: 200px;/*espcacio entre las tarjetas*/
+            row-gap: 80px;
+        }   
+        
+        /*imagen principal  del producto*/
+        .product-card{
+            width: 14vw;
+            height: 50vh;
+            background-color: $secondary-color;
+            color: $primary-text-color;
+            padding: 20px;
+            border-radius: 8px;
+            
+
+            /*modificp posicion el corazon del carta*/
+            .icon{
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding-bottom: 12px;
+
+                /*modificp tamaño el corazon del carta*/
+                svg{
+                    width:28px;
+                    height: 28px;
+                    
+
+                }
+            }
+
+            .product-image{
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img{
+                    width: 12vw;
+                    height: 30vh;
+                    object-fit: cover;/*se utiliza para controlar cómo se ajusta una imagen o un video dentro de un elemento contenedor.*/
+                    border-radius: 6px;
+                }
+            }          
+        }
+    }
+
+    .furniture{
+        @extend .healthcare;/*de esta forma tomo los estilos de la clase healthcare*/
+        .product-card{
+            background-color: $tertiary-color;
+            color: white;
+        }
+    }
+}
+
+/*seection de informacion por que nosotros*/
+.about-us{
+    padding-bottom: 60px;
+    h2{
+        font-weight: bold;
+        padding-bottom: 60px;
+    }
+
+    .mission-section{
+        
+        @include flexCenter(row,space-evenly,center );
+
+        /*parrafo que acompaña los iconos*/
+        .earth{
+            $text-color: #E86424;
+            width: 30vw;
+            display: flex;
+            gap: 40px;
+            color: $text-color;
+
+            img{
+                object-fit: contain;
+            }
+
+            P{
+                text-align: center;
+                font-size: $paragraph-size;
+            }
+        }
+    }
+
+    .innovation{
+        @extend .earth;
+    }
+
+}
+
+.galeria{
+    h2{
+        font-weight: bold;
+        padding-bottom: 60px;
+    }
+    .galeria-imagenes{
+        @include flexCenter(row,space-between,center);
+        img{
+            width: 26vw;
+            height: 45vh;
+            object-fit: cover;
+            object-position: 5px 35%;
+            border-radius: 16px;
+            &:hover{
+                transform: scale(1.1);
+            }
+            
+        }
+    }
+}
+
+.location{
+    $text-color:#E86424;
+    color:$text-color;
+
+    h2{
+        padding-bottom: 60px;
+        padding-top: 60px;
+        font-size: 2.5em;
+        
+    }
+   
+    .map{
+        @include flexCenter(row,center,center);
+        padding-bottom: 50px;
+        
+        img{
+            width: 70vw;
+            height: 70vh;
+            object-fit: cover;
+            object-position: 5px 35%;
+        
+        }
+
+        h3,p{
+            font-size: $paragraph-size;
+        }
+    }
+}
+
+footer{
+    
+    background-color: $quaternary-color;
+    width: 100%;
+    height: auto;
+    color:white;
+    padding: 40px;
+
+    .social-media{
+        @include flexCenter(row,center ,center );
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+}
